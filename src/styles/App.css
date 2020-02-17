@@ -1,15 +1,19 @@
 .array-bar {
-    width: 3px;
+    width: 0.3%;
     background-color: #b9cced;
     display: inline-block;
     margin: 0 1px;
 }
 
 .array-container {
+    /* min-width: 1000px; */
     width: 70%;
-    position: absolute;
+    /* position: absolute;
     left: 50%;
     top: 50%;
     -webkit-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%); */
+    position: relative;
+    left: 12%;
+    margin-top: 7%;
 }
