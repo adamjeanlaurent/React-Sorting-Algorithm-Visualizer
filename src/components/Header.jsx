@@ -1,20 +1,19 @@
+/* eslint-disable */
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import $ from "jquery";
 import Popper from "popper.js";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 
-export function Header() {
+export function Header(props) {
     return (
         <nav
-            class="navbar navbar-light navbar-expand-lg "
+            className="navbar navbar-light navbar-expand-lg "
             style={{ backgroundColor: "#e3f2fd" }}
         >
-            <a class="navbar-brand" href="#">
-                Sorting Algo Visualizer
-            </a>
+            <a className="navbar-brand">Sorting Algo Visualizer</a>
             <button
-                class="navbar-toggler"
+                className="navbar-toggler"
                 type="button"
                 data-toggle="collapse"
                 data-target="#navbarNav"
@@ -22,28 +21,41 @@ export function Header() {
                 aria-expanded="false"
                 aria-label="Toggle navigation"
             >
-                <span class="navbar-toggler-icon"></span>
+                <span className="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item active">
-                        <button type="button" class="btn btn-success">
+            <div className="collapse navbar-collapse" id="navbarNav">
+                <ul className="navbar-nav">
+                    <li className="nav-item active">
+                        <button
+                            type="button"
+                            className="btn btn-success"
+                            onClick={props.bubbleSort}
+                        >
                             Bubble Sort
                         </button>
                     </li>
-                    <li class="nav-item">
-                        <button type="button" class="btn btn-primary">
+                    <li className="nav-item">
+                        <button type="button" className="btn btn-primary">
                             Insertion Sort
                         </button>
                     </li>
-                    <li class="nav-item">
-                        <button type="button" class="btn btn-warning">
+                    <li className="nav-item">
+                        <button type="button" className="btn btn-warning">
                             Merge Sort
                         </button>
                     </li>
-                    <li class="nav-item">
-                        <button type="button" class="btn btn-danger">
+                    <li className="nav-item">
+                        <button type="button" className="btn btn-danger">
                             Quick Sort
+                        </button>
+                    </li>
+                    <li className="nav-item">
+                        <button
+                            type="button"
+                            className="btn btn-secondary"
+                            onClick={props.randomize}
+                        >
+                            Randomize
                         </button>
                     </li>
                 </ul>

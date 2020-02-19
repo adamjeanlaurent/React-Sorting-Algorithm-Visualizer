@@ -1,31 +1,55 @@
 import React, { useState } from "react";
 import "../styles/App.css";
 import { Header } from "./Header";
+import HelperMethods, {
+    fillArrayWithRandomValues,
+    turnAllOtherBarsBlue,
+    removeAllHighlightedBars,
+    randomNumberBetweenBounds
+} from "../HelperMethods/HelperMethods";
 
 export default function SortingVisualizer(props) {
-    const LOWER_BOUND = 5;
-    const UPPER_BOUND = 200;
-    const ARRAY_SIZE = 200;
-
+    let arrayCache = [];
+    let animations = [];
     const [array, updateArray] = useState(fillArrayWithRandomValues);
 
-    // returns a random number between bounds inclusive
-    function randomNumberBetweenBounds() {
-        return Math.floor(Math.random() * UPPER_BOUND) + LOWER_BOUND;
-    }
-
-    // fills array with random values
-    function fillArrayWithRandomValues() {
-        let tempArray = [];
-        for (let i = 0; i < ARRAY_SIZE; i++) {
-            tempArray.push(randomNumberBetweenBounds());
+    function animatedBubbleSort() {
+        let tempArr = array.slice();
+        let len = tempArr.length;
+        for (let i = 0; i < len; i++) {
+            for (let j = 0; j < len; j++) {
+                if (tempArr[j] > tempArr[j + 1]) {
+                    let tmp = tempArr[j];
+                    tempArr[j] = tempArr[j + 1];
+                    tempArr[j + 1] = tmp;
+                    arrayCache.push(tempArr.slice());
+                    animations.push(j);
+                    setTimeout(() => {
+                        let indexToTurnRed = animations.shift();
+                        let highlightedBar = document.getElementById(
+                            `${indexToTurnRed}`
+                        );
+                        highlightedBar.style.backgroundColor = "red";
+                        let arrayToUpdate = arrayCache.shift();
+                        turnAllOtherBarsBlue(indexToTurnRed, arrayToUpdate);
+                        if (arrayCache.length == 0) {
+                            removeAllHighlightedBars();
+                        }
+                        updateArray(arrayToUpdate);
+                    }, i * 1);
+                }
+            }
         }
-        return tempArray;
     }
 
     return (
         <div>
-            <Header />
+            <Header
+                bubbleSort={animatedBubbleSort}
+                randomize={() => {
+                    updateArray(fillArrayWithRandomValues);
+                }}
+            />
             <div className="array-container">
                 {array.map((value, idx) => {
                     return (
@@ -33,6 +57,7 @@ export default function SortingVisualizer(props) {
                             style={{ height: `${value * 2}px` }}
                             className="array-bar"
                             key={idx}
+                            id={idx}
                         ></div>
                     );
                 })}
