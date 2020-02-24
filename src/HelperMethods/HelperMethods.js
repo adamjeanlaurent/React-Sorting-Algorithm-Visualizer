@@ -2,21 +2,21 @@ const LOWER_BOUND = 5;
 const UPPER_BOUND = 100;
 const ARRAY_SIZE = 100;
 
-export function disableButtons() {
+function disableButtons() {
     let buttons = document.querySelectorAll("button");
     for (let button of buttons) {
         button.disabled = true;
     }
 }
 
-export function enableButtons() {
+function enableButtons() {
     let buttons = document.querySelectorAll("button");
     for (let button of buttons) {
         button.disabled = false;
     }
 }
 
-export function turnAllOtherBarsBlue(indexToKeepRed, arrayToUpdate) {
+function turnAllOtherBarsBlue(indexToKeepRed, arrayToUpdate) {
     for (let i = 0; i < arrayToUpdate.length; i++) {
         let current = document.getElementById(`${i}`);
         if (i !== indexToKeepRed) {
@@ -25,19 +25,19 @@ export function turnAllOtherBarsBlue(indexToKeepRed, arrayToUpdate) {
     }
 }
 
-export function removeAllHighlightedBars() {
+function removeAllHighlightedBars() {
     for (let i = 0; i < ARRAY_SIZE; i++) {
         document.getElementById(`${i}`).style.backgroundColor = "#b9cced";
     }
 }
 
 // returns a random number between bounds inclusive
-export function randomNumberBetweenBounds() {
+function randomNumberBetweenBounds() {
     return Math.floor(Math.random() * UPPER_BOUND) + LOWER_BOUND;
 }
 
 // fills array with random values
-export function fillArrayWithRandomValues() {
+function fillArrayWithRandomValues() {
     let tempArray = [];
     for (let i = 0; i < ARRAY_SIZE; i++) {
         tempArray.push(randomNumberBetweenBounds());
@@ -45,7 +45,18 @@ export function fillArrayWithRandomValues() {
     return tempArray;
 }
 
-// export {
+const HelperMethods = {
+    disableButtons,
+    enableButtons,
+    turnAllOtherBarsBlue,
+    removeAllHighlightedBars,
+    randomNumberBetweenBounds,
+    fillArrayWithRandomValues
+};
+
+export default HelperMethods;
+
+//  {
 //     turnAllOtherBarsBlue,
 //     fillArrayWithRandomValues,
 //     randomNumberBetweenBounds,

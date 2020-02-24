@@ -1,28 +1,24 @@
 import React, { useState } from "react";
 import "../styles/App.css";
 import { Header } from "./Header";
-import {
-    fillArrayWithRandomValues,
-    turnAllOtherBarsBlue,
-    removeAllHighlightedBars,
-    disableButtons,
-    enableButtons
-} from "../HelperMethods/HelperMethods";
+import HelperMethods from "../HelperMethods/HelperMethods";
 
 export default function SortingVisualizer(props) {
     let arrayCache = [];
     let animations = [];
-    const [array, updateArray] = useState(fillArrayWithRandomValues);
+    const [array, updateArray] = useState(
+        HelperMethods.fillArrayWithRandomValues
+    );
 
     function highlightRedBar() {
         let indexToTurnRed = animations.shift();
         let highlightedBar = document.getElementById(`${indexToTurnRed}`);
         highlightedBar.style.backgroundColor = "red";
         let arrayToUpdate = arrayCache.shift();
-        turnAllOtherBarsBlue(indexToTurnRed, arrayToUpdate);
+        HelperMethods.turnAllOtherBarsBlue(indexToTurnRed, arrayToUpdate);
         if (arrayCache.length === 0) {
-            removeAllHighlightedBars();
-            enableButtons();
+            HelperMethods.removeAllHighlightedBars();
+            HelperMethods.enableButtons();
         }
         updateArray(arrayToUpdate);
     }
@@ -67,10 +63,10 @@ export default function SortingVisualizer(props) {
             <Header
                 bubbleSort={() => {
                     animatedBubbleSort();
-                    disableButtons();
+                    HelperMethods.disableButtons();
                 }}
                 randomize={() => {
-                    updateArray(fillArrayWithRandomValues);
+                    updateArray(HelperMethods.fillArrayWithRandomValues);
                 }}
             />
             <div className="array-container">
