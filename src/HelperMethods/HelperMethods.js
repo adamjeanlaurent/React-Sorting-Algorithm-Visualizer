@@ -2,10 +2,24 @@ const LOWER_BOUND = 5;
 const UPPER_BOUND = 100;
 const ARRAY_SIZE = 100;
 
+function disableButtons() {
+    let buttons = document.querySelectorAll("button");
+    for (let button of buttons) {
+        button.disabled = true;
+    }
+}
+
+function enableButtons() {
+    let buttons = document.querySelectorAll("button");
+    for (let button of buttons) {
+        button.disabled = false;
+    }
+}
+
 function turnAllOtherBarsBlue(indexToKeepRed, arrayToUpdate) {
     for (let i = 0; i < arrayToUpdate.length; i++) {
         let current = document.getElementById(`${i}`);
-        if (i != indexToKeepRed) {
+        if (i !== indexToKeepRed) {
             current.style.backgroundColor = "#b9cced";
         }
     }
@@ -35,5 +49,7 @@ export {
     turnAllOtherBarsBlue,
     fillArrayWithRandomValues,
     randomNumberBetweenBounds,
-    removeAllHighlightedBars
+    removeAllHighlightedBars,
+    disableButtons,
+    enableButtons
 };
