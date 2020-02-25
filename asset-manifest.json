@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/React-Sorting-Algorithm-Visualizer/static/css/main.b728bc59.chunk.css",
+    "main.js": "/React-Sorting-Algorithm-Visualizer/static/js/main.67769afa.chunk.js",
+    "main.js.map": "/React-Sorting-Algorithm-Visualizer/static/js/main.67769afa.chunk.js.map",
+    "runtime-main.js": "/React-Sorting-Algorithm-Visualizer/static/js/runtime-main.0bfa3781.js",
+    "runtime-main.js.map": "/React-Sorting-Algorithm-Visualizer/static/js/runtime-main.0bfa3781.js.map",
+    "static/css/2.47e06e2e.chunk.css": "/React-Sorting-Algorithm-Visualizer/static/css/2.47e06e2e.chunk.css",
+    "static/js/2.94720f9d.chunk.js": "/React-Sorting-Algorithm-Visualizer/static/js/2.94720f9d.chunk.js",
+    "static/js/2.94720f9d.chunk.js.map": "/React-Sorting-Algorithm-Visualizer/static/js/2.94720f9d.chunk.js.map",
+    "index.html": "/React-Sorting-Algorithm-Visualizer/index.html",
+    "precache-manifest.92d8e0cc38535b27927f7cfdcdc34d57.js": "/React-Sorting-Algorithm-Visualizer/precache-manifest.92d8e0cc38535b27927f7cfdcdc34d57.js",
+    "service-worker.js": "/React-Sorting-Algorithm-Visualizer/service-worker.js",
+    "static/css/2.47e06e2e.chunk.css.map": "/React-Sorting-Algorithm-Visualizer/static/css/2.47e06e2e.chunk.css.map",
+    "static/css/main.b728bc59.chunk.css.map": "/React-Sorting-Algorithm-Visualizer/static/css/main.b728bc59.chunk.css.map",
+    "static/js/2.94720f9d.chunk.js.LICENSE.txt": "/React-Sorting-Algorithm-Visualizer/static/js/2.94720f9d.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.0bfa3781.js",
+    "static/css/2.47e06e2e.chunk.css",
+    "static/js/2.94720f9d.chunk.js",
+    "static/css/main.b728bc59.chunk.css",
+    "static/js/main.67769afa.chunk.js"
+  ]
+}
