@@ -42,7 +42,7 @@ export default function SortingVisualizer(props) {
                 arrayCache.push(tempArr.slice());
                 setTimeout(() => {
                     highlightRedBar();
-                }, (i + 5) * mult++);
+                });
             }
         }
     }
