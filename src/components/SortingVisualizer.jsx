@@ -23,6 +23,30 @@ export default function SortingVisualizer(props) {
         updateArray(arrayToUpdate);
     }
 
+    function animatedSelectionSort() {
+        let mult = 1;
+        let tempArr = array.slice();
+        let len = tempArr.length;
+        for (let i = 0; i < len; i++) {
+            let min = i;
+            for (var j = i + 1; j < len; j++) {
+                animations.push(j);
+                if (tempArr[min] > tempArr[j]) {
+                    min = j;
+                }
+            }
+            if (min !== i) {
+                let tmp = tempArr[i];
+                tempArr[i] = tempArr[min];
+                tempArr[min] = tmp;
+                arrayCache.push(tempArr.slice());
+                setTimeout(() => {
+                    highlightRedBar();
+                }, (i + 5) * mult++);
+            }
+        }
+    }
+
     function animatedBubbleSort() {
         let tempArr = array.slice();
         let len = tempArr.length;
@@ -36,8 +60,6 @@ export default function SortingVisualizer(props) {
                     arrayCache.push(tempArr.slice());
 
                     /*
-
-
                     Note on possibly enhancing performance, maybe we can just swap 
                     elements in the DOM and update the state at the end in timeouts.
                     
@@ -47,8 +69,8 @@ export default function SortingVisualizer(props) {
                     from before? 
 
 
-
-
+                    CONCERNS: re-rendering the DOM is what applies the ley id values based on the idexes, if we don't re-render the ids will be out of order highlist the wrong 
+                    bars
                     */
                     setTimeout(() => {
                         highlightRedBar();
@@ -67,6 +89,10 @@ export default function SortingVisualizer(props) {
                 }}
                 randomize={() => {
                     updateArray(HelperMethods.fillArrayWithRandomValues);
+                }}
+                selectionSort={() => {
+                    animatedSelectionSort();
+                    HelperMethods.disableButtons();
                 }}
             />
             <div className="array-container">

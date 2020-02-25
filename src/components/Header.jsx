@@ -35,18 +35,22 @@ export function Header(props) {
                         </button>
                     </li>
                     <li className="nav-item">
-                        <button type="button" className="btn btn-primary">
-                            Insertion Sort
+                        <button
+                            type="button"
+                            className="btn btn-primary"
+                            onClick={props.selectionSort}
+                        >
+                            Selection Sort
                         </button>
                     </li>
                     <li className="nav-item">
                         <button type="button" className="btn btn-warning">
-                            Merge Sort
+                            Insertion Sort
                         </button>
                     </li>
                     <li className="nav-item">
                         <button type="button" className="btn btn-danger">
-                            Quick Sort
+                            Merge Sort
                         </button>
                     </li>
                     <li className="nav-item">
