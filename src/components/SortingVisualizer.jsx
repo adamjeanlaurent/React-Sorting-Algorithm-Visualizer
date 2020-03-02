@@ -51,6 +51,8 @@ export default function SortingVisualizer(props) {
     }
     // problems, it's getting progessively faster, and what is the best time interval to use, is both of them happening
     // at the same time what we want ??? Refactor Bubble sort and once that is working refactor selection sort
+    // maybe we merge them back into two functions ? this would decrease the complexity of having two call backs and
+    // we would have to call it everytime and have some logic to update the state if the array cache isn't empty ??
     function animatedBubbleSort() {
         let tempArr = array.slice();
         let len = tempArr.length;
