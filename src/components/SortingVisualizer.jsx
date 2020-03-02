@@ -10,21 +10,24 @@ export default function SortingVisualizer(props) {
         HelperMethods.fillArrayWithRandomValues
     );
 
-    function highlightRedBar() {
+    function highlightRedPointer() {
         let indexToTurnRed = animations.shift();
         let highlightedBar = document.getElementById(`${indexToTurnRed}`);
         highlightedBar.style.backgroundColor = "red";
-        let arrayToUpdate = arrayCache.shift();
+        let arrayToUpdate = arrayCache.length === 0 ? array : arrayCache[0];
         HelperMethods.turnAllOtherBarsBlue(indexToTurnRed, arrayToUpdate);
         if (arrayCache.length === 0) {
             HelperMethods.removeAllHighlightedBars();
             HelperMethods.enableButtons();
         }
+    }
+
+    function handleSwap() {
+        let arrayToUpdate = arrayCache.shift();
         updateArray(arrayToUpdate);
     }
 
     function animatedSelectionSort() {
-        let mult = 1;
         let tempArr = array.slice();
         let len = tempArr.length;
         for (let i = 0; i < len; i++) {
@@ -41,40 +44,30 @@ export default function SortingVisualizer(props) {
                 tempArr[min] = tmp;
                 arrayCache.push(tempArr.slice());
                 setTimeout(() => {
-                    highlightRedBar();
-                });
+                    handleSwap();
+                }, i * 50);
             }
         }
     }
-
+    // problems, it's getting progessively faster, and what is the best time interval to use, is both of them happening
+    // at the same time what we want ??? Refactor Bubble sort and once that is working refactor selection sort
     function animatedBubbleSort() {
         let tempArr = array.slice();
         let len = tempArr.length;
         for (let i = 0; i < len; i++) {
             for (let j = 0; j < len; j++) {
                 animations.push(j);
+                setTimeout(() => {
+                    highlightRedPointer();
+                }, (i + 51) * (j + 51));
                 if (tempArr[j] > tempArr[j + 1]) {
                     let tmp = tempArr[j];
                     tempArr[j] = tempArr[j + 1];
                     tempArr[j + 1] = tmp;
                     arrayCache.push(tempArr.slice());
-
-                    /*
-                    Note on possibly enhancing performance, maybe we can just swap 
-                    elements in the DOM and update the state at the end in timeouts.
-                    
-                    Maybe after that I can increase the array size to 200 ? 
-
-                    what is the point of updating the entire state every time when in reality only two bars will be different
-                    from before? 
-
-
-                    CONCERNS: re-rendering the DOM is what applies the ley id values based on the idexes, if we don't re-render the ids will be out of order highlist the wrong 
-                    bars
-                    */
                     setTimeout(() => {
-                        highlightRedBar();
-                    }, i * 1);
+                        handleSwap();
+                    }, (i + 50) * (j + 50));
                 }
             }
         }
